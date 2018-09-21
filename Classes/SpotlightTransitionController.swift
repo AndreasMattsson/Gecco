@@ -8,21 +8,21 @@
 
 import UIKit
 
-protocol SpotlightTransitionControllerDelegate: class {
+public protocol SpotlightTransitionControllerDelegate: class {
     func spotlightTransitionWillPresent(_ controller: SpotlightTransitionController, transitionContext: UIViewControllerContextTransitioning)
     func spotlightTransitionWillDismiss(_ controller: SpotlightTransitionController, transitionContext: UIViewControllerContextTransitioning)
 }
 
-class SpotlightTransitionController: NSObject, UIViewControllerAnimatedTransitioning {
+open class SpotlightTransitionController: NSObject, UIViewControllerAnimatedTransitioning {
     @objc var isPresent = false
     
     weak var delegate: SpotlightTransitionControllerDelegate?
     
-    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    open func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.25
     }
     
-    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+    open func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         if isPresent {
             animateTransitionForPresent(transitionContext)
         } else {

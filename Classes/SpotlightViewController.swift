@@ -18,7 +18,7 @@ open class SpotlightViewController: UIViewController {
     
     @objc open weak var delegate: SpotlightViewControllerDelegate?
     
-    fileprivate lazy var transitionController: SpotlightTransitionController = {
+    open lazy var transitionController: SpotlightTransitionController = {
         let controller = SpotlightTransitionController()
         controller.delegate = self
         return controller
@@ -92,22 +92,22 @@ extension SpotlightViewController {
 }
 
 extension SpotlightViewController: SpotlightTransitionControllerDelegate {
-    @objc func spotlightTransitionWillPresent(_ controller: SpotlightTransitionController, transitionContext: UIViewControllerContextTransitioning) {
+    @objc open func spotlightTransitionWillPresent(_ controller: SpotlightTransitionController, transitionContext: UIViewControllerContextTransitioning) {
         delegate?.spotlightViewControllerWillPresent?(self, animated: transitionContext.isAnimated)
     }
     
-    @objc func spotlightTransitionWillDismiss(_ controller: SpotlightTransitionController, transitionContext: UIViewControllerContextTransitioning) {
+    @objc open func spotlightTransitionWillDismiss(_ controller: SpotlightTransitionController, transitionContext: UIViewControllerContextTransitioning) {
         delegate?.spotlightViewControllerWillDismiss?(self, animated: transitionContext.isAnimated)
     }
 }
 
 extension SpotlightViewController: UIViewControllerTransitioningDelegate {
-    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    open func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transitionController.isPresent = true
         return transitionController
     }
     
-    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    open func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         transitionController.isPresent = false
         return transitionController
     }
